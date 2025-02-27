@@ -1,0 +1,96 @@
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4faff;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#app {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.conversations {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    max-height: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+.conversations li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    list-style: none;
+    max-width: 80%;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Menjaga format hasil AI */
+    line-height: 1.5;
+}
+
+.user-message {
+    background-color: #007bff;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+    margin-left: auto;
+}
+
+.ai-message {
+    background-color: #000;
+    color: white;
+    align-self: flex-start;
+    text-align: left;
+    margin-right: auto;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

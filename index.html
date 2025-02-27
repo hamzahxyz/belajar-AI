@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="askAi">
+            <input type="text" v-model="question">
+        </form>
+        <ul class="conversations">
+            <li v-for="conversation in conversations">
+                <p>{{ conversation }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const conversations = ref([])
+                const question = ref('')
+                const askAi = () => {
+                    conversations.value.push(question.value)
+                    axios.request({
+                        url: 'https://api.groq.com/openai/v1/chat/completions',
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Authorization': 'Bearer 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',
+                            'Content-Type': 'application/json'
+                        },
+                        data: { 
+                            "messages": [
+                                { "role": "user", "content": question.value }, 
+                            ], 
+                            "model": "llama-3.3-70b-versatile" 
+                        }
+                    }).then(response => {
+                       conversations.value.push(response.data.choices[0].message.content)
+                       question.value = ''
+                    })
+                }
+                return {
+                    question,
+                    askAi,
+                    conversations
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
